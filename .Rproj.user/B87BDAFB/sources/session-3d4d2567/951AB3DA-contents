@@ -1,0 +1,47 @@
+library(ggplot2)
+library(dplyr)
+
+load("data/processed_data.RData")
+
+if (!dir.exists("output")) {
+  dir.create("output")
+}
+
+create_box_plots <- function(data) {
+  features <- names(data)[1:4]
+  
+  for (feature in features) {
+    p <- ggplot(data, aes_string(x = "Species", y = feature, fill = "Species")) +
+      geom_boxplot() +
+      theme_minimal() +
+      labs(title = paste("Distribution of", feature, "by Species"),
+           x = "Species",
+           y = feature)
+    
+    ggsave(paste0("output/boxplot_", feature, ".png"), p)
+  }
+}
+
+create_scatter_plots <- function(data) {
+  p <- ggplot(data, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+    geom_point() +
+    theme_minimal() +
+    labs(title = "Sepal Length vs Width by Species")
+  
+  ggsave("output/scatter_sepal.png", p)
+  
+  p <- ggplot(data, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+    geom_point() +
+    theme_minimal() +
+    labs(title = "Petal Length vs Width by Species")
+  
+  ggsave("output/scatter_petal.png", p)
+}
+
+cat("Creating box plots...\n")
+create_box_plots(train_data)
+
+cat("Creating scatter plots...\n")
+create_scatter_plots(train_data)
+
+cat("Visualizations have been saved in the output directory.\n")

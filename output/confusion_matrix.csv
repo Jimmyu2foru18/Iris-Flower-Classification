@@ -1,0 +1,10 @@
+"","Prediction","Reference","Freq"
+"1","setosa","setosa",15
+"2","versicolor","setosa",0
+"3","virginica","setosa",0
+"4","setosa","versicolor",0
+"5","versicolor","versicolor",14
+"6","virginica","versicolor",1
+"7","setosa","virginica",0
+"8","versicolor","virginica",2
+"9","virginica","virginica",13

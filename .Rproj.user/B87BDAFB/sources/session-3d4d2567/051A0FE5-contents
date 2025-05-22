@@ -1,0 +1,10 @@
+# Source the iris data preparation script
+source("iris_data.R")
+
+# The iris_data.R script handles:
+# - Loading required libraries
+# - Loading and preparing the iris dataset
+# - Creating train/test splits
+# - Saving processed data
+# - Printing data summaries
+

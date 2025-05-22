@@ -1,0 +1,24 @@
+library(caret)
+library(dplyr)
+library(tidyr)
+
+data(iris)
+
+if (!dir.exists("data")) {
+  dir.create("data")
+}
+
+write.csv(iris, "data/iris_data.csv", row.names = FALSE)
+
+set.seed(123)
+trainIndex <- createDataPartition(iris$Species, p = 0.7, list = FALSE)
+train_data <- iris[trainIndex, ]
+test_data <- iris[-trainIndex, ]
+
+save(train_data, test_data, file = "data/processed_data.RData")
+
+cat("\nTraining Data Summary:\n")
+print(summary(train_data))
+
+cat("\nTesting Data Summary:\n")
+print(summary(test_data))
